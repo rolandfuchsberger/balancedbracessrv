@@ -1,0 +1,10 @@
+# compiled output
+*.exe
+
+# packr2 temporary output folder
+/packrd
+web-packr.go
+
+# System Files
+.DS_Store
+Thumbs.db

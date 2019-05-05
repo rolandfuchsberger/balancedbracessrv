@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Balanced Braces</title>
+</head>
+<body>
+
+    <h1>Balanced Braces</h1>
+
+    <form>
+        Expression:<br>
+        <input type="text" name="expression" value="{{.Input}}"><br>
+    </form>
+
+    {{if  .DisplayBalanced}}
+    
+    <b>Is balanced???</b>
+    <p>{{.IsBalanced}}</p>
+
+    {{end}}
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Balanced Braces Plush</title>
+</head>
+    <body>
+
+        <h1>Balanced Braces Plush</h1>
+
+        <form>
+            Expression:<br>
+            <input type="text" name="expression" value="<%= Input %>"><br>
+        </form>
+
+        <%= if (DisplayBalanced) { %>
+        
+        <b>Is balanced???</b>
+        <p><%= IsBalanced %></p>
+
+        <% } %>
+
+    </body>
+</html>

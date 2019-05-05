@@ -1,0 +1,21 @@
+language: go
+go:
+  - master
+
+sudo: required
+
+install: true
+
+jobs:
+  include:
+    - stage: test
+      script:
+      - golint -set_exit_status ./...
+      - go vet -v ./...
+      - go test -cover ./...
+    - 
+      script:
+      - echo "test build including packr2"
+      - go get -u github.com/gobuffalo/packr/v2/packr2
+      - packr2
+      - go build -v .
