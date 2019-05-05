@@ -5,8 +5,6 @@ go:
 
 sudo: required
 
-install: true
-
 jobs:
   include:
     - stage: test
