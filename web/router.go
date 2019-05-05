@@ -6,12 +6,12 @@ import (
 	"github.com/go-chi/chi"
 )
 
-//Routes asdf
+//Routes retunrs all routes handeled by this package
 func Routes() *chi.Mux {
 	router := chi.NewRouter()
 
 	{
-		bbhandlerPlush, err := NewTemplateRendererPlush()
+		bbhandlerPlush, err := newTemplateRendererPlush()
 		if err != nil {
 			log.Panicln(err)
 		}
@@ -19,7 +19,7 @@ func Routes() *chi.Mux {
 	}
 
 	{
-		bbhandler2, err := NewTemplateRendererFast()
+		bbhandler2, err := newTemplateRendererFast()
 		if err != nil {
 			log.Panicln(err)
 		}
@@ -27,7 +27,7 @@ func Routes() *chi.Mux {
 	}
 
 	{
-		bbhandler, err := NewTemplateRenderer()
+		bbhandler, err := newTemplateRenderer()
 		if err != nil {
 			log.Panicln(err)
 		}

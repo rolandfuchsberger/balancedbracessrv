@@ -14,19 +14,19 @@ const (
 )
 
 //TemplateRendererPlush asdf
-type TemplateRendererPlush struct {
+type templateRendererPlush struct {
 	templateName string
 	template     string
 }
 
 //NewTemplateRendererPlush asdf
-func NewTemplateRendererPlush() (*TemplateRendererPlush, error) {
-	return newTemplateRendererPlush(templateNameBBPlush)
+func newTemplateRendererPlush() (*templateRendererPlush, error) {
+	return newTemplateRendererPlushName(templateNameBBPlush)
 }
 
-func newTemplateRendererPlush(templateName string) (*TemplateRendererPlush, error) {
+func newTemplateRendererPlushName(templateName string) (*templateRendererPlush, error) {
 
-	tr := &TemplateRendererPlush{}
+	tr := &templateRendererPlush{}
 
 	tr.templateName = templateName
 
@@ -44,7 +44,7 @@ func newTemplateRendererPlush(templateName string) (*TemplateRendererPlush, erro
 }
 
 //Handle s web requests for balanced braces
-func (t *TemplateRendererPlush) Handle(w http.ResponseWriter, r *http.Request) {
+func (t *templateRendererPlush) Handle(w http.ResponseWriter, r *http.Request) {
 
 	//get expression get parameter
 	exprs := r.URL.Query()["expression"]

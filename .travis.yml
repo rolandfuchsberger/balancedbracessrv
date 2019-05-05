@@ -1,21 +1,25 @@
 language: go
+go_import_path: fuchsberger.email/balancedbracessrv/
 go:
   - master
 
 sudo: required
 
-install: true
+before_install:
+  - go get -u github.com/gobuffalo/packr/v2/packr2
 
 jobs:
   include:
     - stage: test
       script:
+      - echo "run packr2 - otherwise tests fail"
+      - packr2
+      - go get -u golang.org/x/lint/golint
       - golint -set_exit_status ./...
       - go vet -v ./...
       - go test -cover ./...
     - 
       script:
       - echo "test build including packr2"
-      - go get -u github.com/gobuffalo/packr/v2/packr2
       - packr2
       - go build -v .

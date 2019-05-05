@@ -6,7 +6,7 @@ import (
 
 func TestInitPlush(t *testing.T) {
 
-	tr, err := NewTemplateRendererPlush()
+	tr, err := newTemplateRendererPlush()
 	if err != nil || tr.template == "" {
 		t.Errorf("Template was not loaded: %v", err)
 	}
@@ -16,7 +16,7 @@ func TestInitErrorPlush(t *testing.T) {
 
 	wrongTempName := "wrongTemplateName.wrong"
 
-	_, err := newTemplateRendererPlush(wrongTempName)
+	_, err := newTemplateRendererPlushName(wrongTempName)
 
 	if err == nil {
 		t.Errorf("No error received while loading %q", wrongTempName)
@@ -25,7 +25,7 @@ func TestInitErrorPlush(t *testing.T) {
 }
 
 func TestHandleErrorInTemplatePlush(t *testing.T) {
-	tr, _ := NewTemplateRendererPlush()
+	tr, _ := newTemplateRendererPlush()
 
 	//Intercept template
 	tr.template = "<%= wrong.var.name %>"
@@ -35,7 +35,7 @@ func TestHandleErrorInTemplatePlush(t *testing.T) {
 
 func TestHandlePlush(t *testing.T) {
 
-	tr, _ := NewTemplateRendererPlush()
+	tr, _ := newTemplateRendererPlush()
 
 	testHandle(tr, t)
 }

@@ -11,6 +11,7 @@ import (
 	"fuchsberger.email/balancedbracessrv/web"
 )
 
+// routes creates the main route including all the sub routes from other packages
 func routes() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(
@@ -31,6 +32,7 @@ func routes() *chi.Mux {
 	return router
 }
 
+// handleRoot redirects to /web/html if navigated to the root
 func handleRoot(w http.ResponseWriter, req *http.Request) {
 	// The "/" pattern matches everything, so we need to check
 	// that we're at the root here.
@@ -41,8 +43,9 @@ func handleRoot(w http.ResponseWriter, req *http.Request) {
 	http.Redirect(w, req, "/web/html", http.StatusTemporaryRedirect)
 }
 
-// Main entry point - starts a server at port 8080
-func Main() {
+// initRouter initializes the router + walks the routs and prints them to the standard output
+// encapsulated in a func for testing
+func initRouter() http.Handler {
 
 	router := routes()
 
@@ -54,7 +57,13 @@ func Main() {
 		log.Panicf("Logging err: %s\n", err.Error()) // panic if there is an error
 	}
 
-	srv := &http.Server{Addr: ":8080", Handler: router}
+	return router
+}
+
+// Main entry point - starts a server at port 8080
+func Main() {
+
+	srv := &http.Server{Addr: ":8080", Handler: initRouter()}
 	defer srv.Close()
 
 	log.Fatal(srv.ListenAndServe())
