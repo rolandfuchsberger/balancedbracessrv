@@ -9,7 +9,7 @@ func TestInitError(t *testing.T) {
 
 	wrongTempName := "wrongTemplateName.wrong"
 
-	_, err := newTemplateRenderer(wrongTempName)
+	_, err := newTemplateRendererName(wrongTempName)
 
 	if err == nil {
 		t.Errorf("No error received while loading %q", wrongTempName)
@@ -18,7 +18,7 @@ func TestInitError(t *testing.T) {
 }
 
 func TestHandleErrorInTemplate(t *testing.T) {
-	tr, _ := NewTemplateRenderer()
+	tr, _ := newTemplateRenderer()
 
 	//Intercept template
 	templateTestString := "{{.wrongVarName}}"
@@ -29,7 +29,7 @@ func TestHandleErrorInTemplate(t *testing.T) {
 
 func TestHandle(t *testing.T) {
 
-	tr, _ := NewTemplateRenderer()
+	tr, _ := newTemplateRenderer()
 
 	testHandle(tr, t)
 }

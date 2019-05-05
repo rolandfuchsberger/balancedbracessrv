@@ -4,6 +4,7 @@ import (
 	"testing"
 )
 
+//TestMain tests if Main invokes mainFunc
 func TestMain(t *testing.T) {
 
 	mainInvoked := false
@@ -12,8 +13,6 @@ func TestMain(t *testing.T) {
 	mainMock := func() {
 		mainInvoked = true
 	}
-
-	// mock mainFunc
 	mainFunc = mainMock
 
 	// run main function and check if it invokes the mainMock

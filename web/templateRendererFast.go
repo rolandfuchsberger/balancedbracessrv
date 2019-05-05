@@ -10,20 +10,20 @@ import (
 )
 
 //TemplateRendererFast asdf
-type TemplateRendererFast struct {
+type templateRendererFast struct {
 	templateName string
 	template     *template.Template
 }
 
 //NewTemplateRendererFast asdf
-func NewTemplateRendererFast() (*TemplateRendererFast, error) {
-	return newTemplateRendererFast(templateNameBB)
+func newTemplateRendererFast() (*templateRendererFast, error) {
+	return newTemplateRendererFastName(templateNameBB)
 }
 
 //for testing: able to inject wrong template name for error testing
-func newTemplateRendererFast(templateName string) (*TemplateRendererFast, error) {
+func newTemplateRendererFastName(templateName string) (*templateRendererFast, error) {
 
-	tr := &TemplateRendererFast{}
+	tr := &templateRendererFast{}
 
 	// Get the string representation of a file, or an error if it doesn't exist:
 	bbString, err := box.FindString(templateName)
@@ -46,7 +46,7 @@ func newTemplateRendererFast(templateName string) (*TemplateRendererFast, error)
 }
 
 //Handle s web requests for balanced braces
-func (t *TemplateRendererFast) Handle(w http.ResponseWriter, r *http.Request) {
+func (t *templateRendererFast) Handle(w http.ResponseWriter, r *http.Request) {
 
 	//get expression get parameter
 	exprs := r.URL.Query()["expression"]

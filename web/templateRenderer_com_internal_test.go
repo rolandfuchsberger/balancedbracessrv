@@ -8,10 +8,6 @@ import (
 	"testing"
 )
 
-type reqHandler interface {
-	Handle(http.ResponseWriter, *http.Request)
-}
-
 func testHandleErrorInTemplate(handler reqHandler, t *testing.T) {
 
 	r, _ := http.NewRequest("GET", "/", nil)

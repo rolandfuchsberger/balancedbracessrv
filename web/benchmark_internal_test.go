@@ -1,11 +1,9 @@
-package web_test
+package web
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"fuchsberger.email/balancedbracessrv/web"
 )
 
 type reqHandler interface {
@@ -14,21 +12,21 @@ type reqHandler interface {
 
 func BenchmarkHTMLTemplate(b *testing.B) {
 
-	tr, _ := web.NewTemplateRenderer()
+	tr, _ := newTemplateRenderer()
 
 	benchmarkRenderer(tr, b)
 }
 
 func BenchmarkHTMLTemplateFast(b *testing.B) {
 
-	tr, _ := web.NewTemplateRendererFast()
+	tr, _ := newTemplateRendererFast()
 
 	benchmarkRenderer(tr, b)
 }
 
 func BenchmarkPlushTemplate(b *testing.B) {
 
-	tr, _ := web.NewTemplateRendererPlush()
+	tr, _ := newTemplateRendererPlush()
 
 	benchmarkRenderer(tr, b)
 }
@@ -36,12 +34,12 @@ func BenchmarkPlushTemplate(b *testing.B) {
 // from fib_test.go
 func benchmarkRenderer(handler reqHandler, b *testing.B) {
 
+	// build request
 	r, _ := http.NewRequest("GET", "/?expression=asdf", nil)
-
-	//r.URL.Query().Add("expression", "asdf")
 
 	recorder := httptest.NewRecorder()
 
+	// fire request b.N times
 	for n := 0; n < b.N; n++ {
 
 		handler.Handle(recorder, r)

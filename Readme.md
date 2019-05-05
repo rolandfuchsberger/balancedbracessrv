@@ -33,3 +33,4 @@
 
 - Concurrency / go routines / channels / mutex...
 - Dependency injection (wire)
+- Service listening on signals

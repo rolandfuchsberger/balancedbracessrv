@@ -16,20 +16,19 @@ const (
 )
 
 //TemplateRenderer asdf
-type TemplateRenderer struct {
+type templateRenderer struct {
 	templateName string
 	template     *template.Template
 }
 
-//NewTemplateRenderer asdf
-func NewTemplateRenderer() (*TemplateRenderer, error) {
-	return newTemplateRenderer(templateNameBB)
+func newTemplateRenderer() (*templateRenderer, error) {
+	return newTemplateRendererName(templateNameBB)
 }
 
 //for testing: able to inject wrong template name for error testing
-func newTemplateRenderer(templateName string) (*TemplateRenderer, error) {
+func newTemplateRendererName(templateName string) (*templateRenderer, error) {
 
-	tr := &TemplateRenderer{}
+	tr := &templateRenderer{}
 
 	// Get the string representation of a file, or an error if it doesn't exist:
 	bbString, err := box.FindString(templateName)
@@ -52,7 +51,7 @@ func newTemplateRenderer(templateName string) (*TemplateRenderer, error) {
 }
 
 //Handle s web requests for balanced braces
-func (t *TemplateRenderer) Handle(w http.ResponseWriter, r *http.Request) {
+func (t *templateRenderer) Handle(w http.ResponseWriter, r *http.Request) {
 
 	//get expression get parameter
 	exprs := r.URL.Query()["expression"]

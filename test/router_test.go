@@ -15,7 +15,7 @@ func (r testRouter) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 }
 
-// Test the router test suit
+// TestRouterTest tests the router test suit
 func TestRouterTest(t *testing.T) {
 
 	r := testRouter{}
