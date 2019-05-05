@@ -21,10 +21,12 @@
 - Build docker image in CI/CD and push to repo
 - Include XSRF headers
 - Define and enforce limits on API
+- e2e tests (e.g. Karma + Jasmine for html; go tests for API)
+- Service listening on signals
 
 ## Key Concepts Included
 
-- Usage of Chi router
+- Decoupling using routes
 - Unit tests
 - Benchmarks (html/template vs gobuffalo/plush)
 - Test suite
@@ -33,4 +35,3 @@
 
 - Concurrency / go routines / channels / mutex...
 - Dependency injection (wire)
-- Service listening on signals
