@@ -5,10 +5,15 @@ go:
 
 sudo: required
 
+before_install:
+  - go get -u github.com/gobuffalo/packr/v2/packr2
+
 jobs:
   include:
     - stage: test
       script:
+      - echo "run packr2 - otherwise tests fail"
+      - packr2
       - go get -u golang.org/x/lint/golint
       - golint -set_exit_status ./...
       - go vet -v ./...
@@ -16,6 +21,5 @@ jobs:
     - 
       script:
       - echo "test build including packr2"
-      - go get -u github.com/gobuffalo/packr/v2/packr2
       - packr2
       - go build -v .
